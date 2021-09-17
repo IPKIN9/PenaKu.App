@@ -6,7 +6,7 @@
         <div class="sidebar-brand-text mx-3">PenaKu.app</div>
     </a>
     <hr class="sidebar-divider my-0">
-    <li class="nav-item active">
+    <li class="nav-item {{ Route::is('ds.index') ? 'active' : '' }}">
         <a class="nav-link" href="index.html">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
@@ -15,17 +15,17 @@
     <div class="sidebar-heading">
         Kelolah Data
     </div>
-    <li class="nav-item">
+    <li class="nav-item {{ Route::is('contoh.index') ? 'active' : '' }}">
         <a class="nav-link" href="{{route('contoh.index')}}">
             <i class="fas fa-paperclip"></i>
             <span>Contoh</span></a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item {{ Route::is('news.index') ? 'active' : '' }}">
         <a class="nav-link" href="{{route('news.index')}}">
             <i class="fas fa-paperclip"></i>
             <span>News</span></a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item {{ Route::is('departement.index') ? 'active' : '' }}">
         <a class="nav-link" href="{{route('departement.index')}}">
             <i class="fas fa-paperclip"></i>
             <span>Departement</span></a>

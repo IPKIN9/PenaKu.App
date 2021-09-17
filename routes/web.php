@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('Cms.Dashboard');
-});
+})->name('ds.index');
 
 Route::prefix('Contoh')->group(function () {
     Route::get('index', [ContohController::class, 'index'])->name('contoh.index');

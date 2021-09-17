@@ -39,7 +39,7 @@
                                     <tr role="row" class="odd">
                                         <td class="sorting_1">{{$no++}}</td>
                                         <td>{{$d->title}}</td>
-                                        <td>{{$d->contents}}</td>
+                                        <td style="width: 400px;">{{$d->contents}}</td>
                                         <td>{{date('d-M-Y', strtotime($d->created_at))}}</td>
                                         <td>{{date('d-M-Y', strtotime($d->updated_at))}}</td>
                                         <td>
@@ -71,33 +71,32 @@
                         <form autocomplete="off" action="{{route('news.create')}}" method="POST">
                             @csrf
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <div class="form-group">
                                         <label for="contoh_input">title</label>
                                         <input type="text" name="title" class="form-control" id="news_input"
-                                            aria-describedby="Masukan Data news" placeholder="Insert Value Here">
+                                            aria-describedby="Masukan Data news" placeholder="">
                                         <small id="contoh_news" class="form-text text-muted">Masukan title</small>
                                         <br>
                                         @error('title')
-                                            <p class="text-danger">{{ $message }}</p>
+                                        <p class="text-danger">{{ $message }}</p>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <div class="form-group">
                                         <label for="news_input">contents</label>
-                                        <input type="text" name="contents" class="form-control" id="news_input"
-                                            aria-describedby="Masukan Data News" placeholder="Insert Value Here">
+                                        <textarea class="form-control" name="contents" rows="12"></textarea>
                                         <small id="news_input" class="form-text text-muted">masukan contents</small>
                                         <br>
-                                            @error('title')
-                                              <p class="text-danger">{{ $message }}</p>
-                                            @enderror
+                                        @error('title')
+                                        <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
                             <hr>
-                            
+
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
@@ -129,24 +128,25 @@
                 $('#edit_form').attr('action', `{{route('news.update')}}`);
                 $('.modal-body').html('');
                 $('.modal-body').append(`
-                <div class="row">
+                <div class="row mt-5">
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <div class="form-group">
-                            <label for="news_input">News</label>
+                            <label for="news_input">Title</label>
                             <input type="hidden" name="id" value="`+ data.id +`">
                             <input type="text" value="`+ data.title +`" name="title" class="form-control" >
                             <small class="form-text text-muted">masukan title</small>
                         </div>
                         <div class="form-group">
-                            <label for="news_input">News</label>
-                            <input type="text" value="`+ data.contents +`" name="contents" class="form-control" >
+                            <label for="news_input">Contents</label>
+                            <textarea class="form-control" id="contents_id" name="contents" rows="12"></textarea>
                             <small class="form-text text-muted">masukan contents</small>
                         </div>
                     </div>
                     <div class="col-md-1"></div>
                 </div>
                 `);
+                $('#contents_id').val(data.contents);
                 $('.modal-footer').html('');
                 $('.modal-footer').append(`
                 <button type="submit" class="btn btn-primary">Simpan</button>

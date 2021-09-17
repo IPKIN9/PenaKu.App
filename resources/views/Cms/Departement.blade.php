@@ -19,8 +19,8 @@
                 <div id="dataTableHover_wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                         <div class="col-sm-12">
-                            <table class="table align-items-center table-flush table-hover dataTable" id="table_departement"
-                                role="grid" aria-describedby="dataTableHover_info">
+                            <table class="table align-items-center table-flush table-hover dataTable"
+                                id="table_departement" role="grid" aria-describedby="dataTableHover_info">
                                 <thead class="thead-light">
                                     <tr role="row">
                                         <th>No</th>
@@ -69,21 +69,21 @@
                         <form autocomplete="off" action="{{route('departement.create')}}" method="POST">
                             @csrf
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <div class="form-group">
                                         <label for="contoh_input">Name</label>
                                         <input type="text" name="name" class="form-control" id="departement_input"
-                                            aria-describedby="Masukan Data name" placeholder="Insert Value Here">
+                                            aria-describedby="Masukan Data name" placeholder="">
                                         <small id="contoh_departement" class="form-text text-muted">Masukan name</small>
                                         <br>
                                         @error('title')
-                                            <p class="text-danger">{{ $message }}</p>
+                                        <p class="text-danger">{{ $message }}</p>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
                             <hr>
-                            
+
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
