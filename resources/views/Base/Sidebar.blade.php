@@ -20,4 +20,14 @@
             <i class="fas fa-paperclip"></i>
             <span>Contoh</span></a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('news.index')}}">
+            <i class="fas fa-paperclip"></i>
+            <span>News</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('departement.index')}}">
+            <i class="fas fa-paperclip"></i>
+            <span>Departement</span></a>
+    </li>
 </ul>
