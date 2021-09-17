@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Cms\DeptController;
 use App\Http\Controllers\Cms\NewsController;
+use App\Http\Controllers\Cms\New_MemberController;
 use App\Http\Controllers\Contoh\ContohController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +33,12 @@ Route::prefix('Departement')->group(function () {
     Route::post('update', [DeptController::class, 'update'])->name('departement.update');
     Route::delete('deletespecdata/{id}', [DeptController::class, 'delete']);
 });
+
+Route::group(['prefix' => 'new_member'], function() {
+    Route::get('index', [New_MemberController::class, 'index'])->name('new_member.index');
+    Route::post('create', [New_MemberController::class, 'create'])->name('new_member.create');
+    Route::get('getspecdata/{id}', [New_MemberController::class, 'edit']);
+    Route::post('update', [New_MemberController::class, 'update'])->name('new_member.update');
+    Route::delete('deletespecdata/{id}', [New_MemberController::class, 'delete']);
+});
+
