@@ -1,53 +1,56 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Cms;
 
-use App\Http\Requests\DepartementRequest;
-use App\Models\DepartementModel;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\NewsRequest;
+use App\Models\NewsModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class DepartementController extends Controller
+class NewsController extends Controller
 {
     public function index()
     {
-        $data = DepartementModel::all();
-        return view('Cms.Departement')->with('data', $data);
+        $data = NewsModel::all();
+        return view('Cms.News')->with('data', $data);
     }
 
-    public function create(DepartementRequest $request)
+    public function create(NewsRequest $request)
     {
         $date = Carbon::now();
         $data = array(
-            'name' => $request->name,
+            'title' => $request->title,
+            'contents' => $request->contents,
             'created_at' => $date,
             'updated_at' => $date,
         );
-        DepartementModel::create($data);
+        NewsModel::create($data);
         return redirect()->back()->with('status', 'Data berhasil di tambahkan');
     }
 
     public function edit($id)
     {
-        $result = DepartementModel::where('id', $id)->first();
+        $result = NewsModel::where('id', $id)->first();
         return response()->json($result);
     }
 
-    public function update(DepartementRequest $request)
+    public function update(NewsRequest $request)
     {
         $date = Carbon::now();
         $id = $request->id;
         $data = array(
-            'name' => $request->name,
+            'title' => $request->title,
+            'contents' => $request->contents,
             'updated_at' => $date
         );
-        DepartementModel::where('id', $id)->update($data);
+        NewsModel::where('id', $id)->update($data);
         return redirect()->back()->with('status', 'Perubahan data berhasil dilakukan');
     }
 
     public function delete($id)
     {
-        DepartementModel::where('id', $id)->delete();
+        NewsModel::where('id', $id)->delete();
         return response()->json();
     }
 }
