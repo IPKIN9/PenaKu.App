@@ -20,4 +20,14 @@
             <i class="fas fa-paperclip"></i>
             <span>Contoh</span></a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('event.index')}}">
+            <i class="fas fa-paperclip"></i>
+            <span>Event</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('question.index')}}">
+            <i class="fas fa-paperclip"></i>
+            <span>Question</span></a>
+    </li>
 </ul>

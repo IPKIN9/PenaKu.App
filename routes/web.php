@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Contoh\ContohController;
+use App\Http\Controllers\Event\EventController;
+use App\Http\Controllers\Question\QuestionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,4 +26,18 @@ Route::prefix('Contoh')->group(function () {
     Route::get('getspecdata/{id}', [ContohController::class, 'edit']);
     Route::post('update', [ContohController::class, 'update'])->name('contoh.update');
     Route::delete('deletespecdata/{id}', [ContohController::class, 'delete']);
+});
+Route::prefix('Event')->group(function () {
+    Route::get('index', [EventController::class, 'index'])->name('event.index');
+    Route::post('create', [EventController::class, 'create'])->name('event.create');
+    Route::get('getspecdata/{id}', [EventController::class, 'edit']);
+    Route::post('update', [EventController::class, 'update'])->name('event.update');
+    Route::delete('deletespecdata/{id}', [EventController::class, 'delete']);
+});
+Route::prefix('Question')->group(function () {
+    Route::get('index', [QuestionController::class, 'index'])->name('question.index');
+    Route::post('create', [QuestionController::class, 'create'])->name('question.create');
+    Route::get('getspecdata/{id}', [QuestionController::class, 'edit']);
+    Route::post('update', [QuestionController::class, 'update'])->name('question.update');
+    Route::delete('deletespecdata/{id}', [QuestionController::class, 'delete']);
 });
