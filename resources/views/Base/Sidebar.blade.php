@@ -30,4 +30,9 @@
             <i class="fas fa-paperclip"></i>
             <span>Departement</span></a>
     </li>
+    <li class="nav-item {{ Route::is('position.index') ? 'active' : '' }}">
+        <a class="nav-link" href="{{route('position.index')}}">
+            <i class="fas fa-paperclip"></i>
+            <span>Position</span></a>
+    </li>
 </ul>
