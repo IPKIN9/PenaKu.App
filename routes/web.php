@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Cms\DeptController;
+use App\Http\Controllers\Cms\GenerationController;
 use App\Http\Controllers\Cms\NewsController;
 use App\Http\Controllers\Cms\PositionController;
 use App\Http\Controllers\Contoh\ContohController;
@@ -40,4 +41,12 @@ Route::prefix('position')->group(function () {
     Route::get('getspecdata/{id}', [PositionController::class, 'edit']);
     Route::post('update', [PositionController::class, 'update'])->name('position.update');
     Route::delete('deletespecdata/{id}', [PositionController::class, 'delete']);
+});
+
+Route::prefix('generation')->group(function () {
+    Route::get('index', [GenerationController::class, 'index'])->name('generation.index');
+    Route::post('create', [GenerationController::class, 'create'])->name('generation.create');
+    Route::get('getspecdata/{id}', [GenerationController::class, 'edit']);
+    Route::post('update', [GenerationController::class, 'update'])->name('generation.update');
+    Route::delete('deletespecdata/{id}', [GenerationController::class, 'delete']);
 });

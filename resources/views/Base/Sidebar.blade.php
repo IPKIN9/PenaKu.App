@@ -35,4 +35,9 @@
             <i class="fas fa-paperclip"></i>
             <span>Position</span></a>
     </li>
+    <li class="nav-item {{ Route::is('generation.index') ? 'active' : '' }}">
+        <a class="nav-link" href="{{route('generation.index')}}">
+            <i class="fas fa-paperclip"></i>
+            <span>Generation</span></a>
+    </li>
 </ul>
