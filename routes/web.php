@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Cms\DeptController;
 use App\Http\Controllers\Cms\NewsController;
+use App\Http\Controllers\Cms\PositionController;
 use App\Http\Controllers\Contoh\ContohController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,12 @@ Route::prefix('Departement')->group(function () {
     Route::get('getspecdata/{id}', [DeptController::class, 'edit']);
     Route::post('update', [DeptController::class, 'update'])->name('departement.update');
     Route::delete('deletespecdata/{id}', [DeptController::class, 'delete']);
+});
+
+Route::prefix('position')->group(function () {
+    Route::get('index', [PositionController::class, 'index'])->name('position.index');
+    Route::post('create', [PositionController::class, 'create'])->name('position.create');
+    Route::get('getspecdata/{id}', [PositionController::class, 'edit']);
+    Route::post('update', [PositionController::class, 'update'])->name('position.update');
+    Route::delete('deletespecdata/{id}', [PositionController::class, 'delete']);
 });
