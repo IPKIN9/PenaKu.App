@@ -14,14 +14,22 @@ class MemberRequest extends FormRequest
     public function rules()
     {
         return [
-            'generation' => 'required'
+            'regist_number' => 'required',
+            'name' => 'required|max:50',
+            'born' => 'required|date',
+            'sex' => 'required|max:10',
+            'departement_id' => 'required|integer',
+            'generation_id' => 'required|integer',
+            'position_id' => 'required|integer',
         ];
     }
 
     public function messages()
     {
         return [
-            'required' => 'Field ini tidak boleh kosong'
+            'required' => 'Field ini tidak boleh kosong',
+            'max' => 'Data yang dimasukan terlalu panjang',
+            'integer' => 'Tipe data tidak valid',
         ];
     }
 }

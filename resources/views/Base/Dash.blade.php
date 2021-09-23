@@ -12,9 +12,9 @@
     <title>RuangAdmin - Dashboard</title>
     <link href="{{ asset('assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.1/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/dataTables.bootstrap4.min.css') }}">
     <link href="{{ asset('assets/css/ruang-admin.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/sweetalert2.css') }}">
 </head>
 
 <body id="page-top">
@@ -49,7 +49,7 @@
                     <h4 class="modal-title">Modal Heading</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <form id="edit_form" method="POST" autocomplete="off" action="">
+                <form id="edit_form" method="POST" enctype="multipart/form-data" autocomplete="off" action="">
                     @csrf
                     <div class="modal-body">
                         Modal body..
@@ -67,9 +67,9 @@
     <script src="{{ asset('assets/js/ruang-admin.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('assets/js/demo/chart-area-demo.js') }}"></script>
-    <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js" defer></script>
-    <script src="https://cdn.datatables.net/1.11.1/js/dataTables.bootstrap4.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.js"></script>
+    <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/dataTables.bootstrap4.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/sweetalert2.js') }}"></script>
     @yield('js')
 </body>
 
