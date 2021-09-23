@@ -7,6 +7,8 @@ use App\Http\Controllers\Cms\NewsController;
 use App\Http\Controllers\Cms\PositionController;
 use App\Http\Controllers\Cms\New_MemberController;
 use App\Http\Controllers\Contoh\ContohController;
+use App\Http\Controllers\Cms\EventController;
+use App\Http\Controllers\Cms\QuestionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -66,4 +68,18 @@ Route::group(['prefix' => 'new_member'], function () {
     Route::get('getspecdata/{id}', [New_MemberController::class, 'edit']);
     Route::post('update', [New_MemberController::class, 'update'])->name('new_member.update');
     Route::delete('deletespecdata/{id}', [New_MemberController::class, 'delete']);
+});
+Route::prefix('Event')->group(function () {
+    Route::get('index', [EventController::class, 'index'])->name('event.index');
+    Route::post('create', [EventController::class, 'create'])->name('event.create');
+    Route::get('getspecdata/{id}', [EventController::class, 'edit']);
+    Route::post('update', [EventController::class, 'update'])->name('event.update');
+    Route::delete('deletespecdata/{id}', [EventController::class, 'delete']);
+});
+Route::prefix('Question')->group(function () {
+    Route::get('index', [QuestionController::class, 'index'])->name('question.index');
+    Route::post('create', [QuestionController::class, 'create'])->name('question.create');
+    Route::get('getspecdata/{id}', [QuestionController::class, 'edit']);
+    Route::post('update', [QuestionController::class, 'update'])->name('question.update');
+    Route::delete('deletespecdata/{id}', [QuestionController::class, 'delete']);
 });

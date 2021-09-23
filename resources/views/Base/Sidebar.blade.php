@@ -48,5 +48,14 @@
         <a class="nav-link" href="{{route('new_member.index')}}">
             <i class="fas fa-paperclip"></i>
             <span>New Member</span></a>
+    <li class="nav-item {{ Route::is('event.index') ? 'active' : '' }}">
+        <a class="nav-link" href="{{route('event.index')}}">
+            <i class="fas fa-paperclip"></i>
+            <span>Event</span></a>
+    </li>
+    <li class="nav-item {{ Route::is('question.index') ? 'active' : '' }}">
+        <a class="nav-link" href="{{route('question.index')}}">
+            <i class="fas fa-paperclip"></i>
+            <span>Question</span></a>
     </li>
 </ul>
