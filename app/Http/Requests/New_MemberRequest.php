@@ -13,7 +13,6 @@ class New_MemberRequest extends FormRequest
     public function rules()
     {
         return [
-            'pic' => 'required',
             'regis_number' => 'required',
             'name' => 'required',
             'born' => 'required',

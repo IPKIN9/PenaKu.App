@@ -24,14 +24,10 @@
                                 <thead class="thead-light">
                                     <tr role="row">
                                         <th>No</th>
-                                        <th>Pic</th>
-                                        <th>Registrasion Number</th>
-                                        <th>Full Name</th>
-                                        <th>Born</th>
-                                        <th>Sex</th>
-                                        <th>Departement</th>
-                                        <th>Semester</th>
-                                        <th>Cause</th>
+                                        <th>No. Registrasi</th>
+                                        <th>Nama Lengkap</th>
+                                        <th>Created At</th>
+                                        <th>Updated At</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -42,14 +38,10 @@
                                     @foreach ($data['all'] as $d)
                                     <tr role="row" class="odd">
                                         <td class="sorting_1">{{$no++}}</td>
-                                        <td>{{$d->pic}}</td>
                                         <td>{{$d->regis_number}}</td>
                                         <td>{{$d->name}}</td>
-                                        <td>{{$d->born}}</td>
-                                        <td>{{$d->sex}}</td>
-                                        <td>{{$d->departement_role->name}}</td>
-                                        <td>{{$d->semester}}</td>
-                                        <td>{{$d->cause}}</td>
+                                        <td>{{date('d-M-Y', strtotime($d->created_at))}}</td>
+                                        <td>{{date('d-M-Y', strtotime($d->updated_at))}}</td>
                                         <td>
                                             <button data-id="{{$d->id}}" id="edit-data"
                                                 class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></button>
@@ -76,23 +68,13 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
                     <div class="card-body mt-2 mb-5">
-                        <form autocomplete="off" action="{{route('new_member.create')}}" method="POST">
+                        <form autocomplete="off" action="{{route('new_member.create')}}" enctype="multipart/form-data"
+                            method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="pic">Pic</label>
-                                        <input type="text" name="pic" class="form-control"
-                                            aria-describedby="Masukan Data Pic" placeholder="Masukan Data Pic">
-                                        @error('pic')
-                                        <p class="text-danger">{{ $message }}</p>
-                                        @enderror
-                                        <br>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="regis_number">Regist Number</label>
+                                        <label for="regis_number">Nomor Registrasi</label>
                                         <input type="text" name="regis_number" class="form-control"
                                             aria-describedby="Masukan Data Regist Number"
                                             placeholder="Masukan Data Regist Number">
@@ -102,84 +84,102 @@
                                         <br>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="name">Name</label>
+                                        <label for="name">Nama Lengkap</label>
                                         <input type="text" name="name" class="form-control"
                                             aria-describedby="Masukan Data Name" placeholder="Masukan Data Name">
+                                        <br>
                                         @error('name')
                                         <p class="text-danger">{{ $message }}</p>
                                         @enderror
-                                        <br>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="born">Born</label>
-                                        <input type="date" name="born" class="form-control"
-                                            aria-describedby="Masukan Data Born" placeholder="Masukan Data Born">
-                                        @error('born')
-                                        <p class="text-danger">{{ $message }}</p>
-                                        @enderror
-                                        <br>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <label for="sex">Sex</label>
+                                    <div class="form-group">
+                                        <label for="born">Tanggal Lahir</label>
+                                        <input type="date" name="born" class="form-control"
+                                            aria-describedby="Masukan Data Born" placeholder="Masukan Data Born">
+                                        <br>
+                                        @error('born')
+                                        <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="sex">Jenis Kelamin</label>
                                     <select class="form-control" name="sex">
-                                        <option disabled selected>select Sex</option>
+                                        <option disabled selected>-- Pilih --</option>
                                         <option value="Laki-Laki">Laki-Laki</option>
                                         <option value="Perempuan">Perempuan</option>
                                     </select>
+                                    <br>
                                     @error('sex')
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="departemen_id">Departement</label>
+                                        <label for="departemen_id">Jurusan</label>
                                         <select class="form-control" name="departemen_id">
-                                            <option disabled selected>select Departement</option>
+                                            <option disabled selected>-- Pilih Jurusan --</option>
                                             @foreach ($data ['dept'] as $d)
                                             <option value="{{$d->id}}">{{$d->name}}</option>
                                             @endforeach
                                         </select>
+                                        <br>
                                         @error('departemen_id')
                                         <p class="text-danger">{{ $message }}</p>
                                         @enderror
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="semester">Semester</label>
-                                        <input type="text" name="semester" class="form-control"
-                                            aria-describedby="Masukan Data Semester"
-                                            placeholder="Masukan Data Semester">
+                                        <label for="exampleFormControlSelect1">Pilih Semester</label>
+                                        <select name="semester" class="form-control" id="exampleFormControlSelect1">
+                                            <option selected disabled>-- Pilih --</option>
+                                            <option>I Satu</option>
+                                            <option>III Tiga</option>
+                                        </select>
+                                        <br>
                                         @error('semester')
                                         <p class="text-danger">{{ $message }}</p>
                                         @enderror
-                                        <br>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="cause">Cause</label>
-                                        <input type="text" name="cause" class="form-control"
-                                            aria-describedby="Masukan Data Cause" placeholder="Masukan Data Cause">
-                                        @error('cause')
-                                        <p class="text-danger">{{ $message }}</p>
-                                        @enderror
-                                        <br>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlTextarea1">Alasan Masuk Pena</label>
+                                        <textarea name="cause" class="form-control" id="exampleFormControlTextarea1"
+                                            rows="12"></textarea>
+                                        <br>
+                                        @error('cause')
+                                        <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="pic" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Pilih Gambar</label>
+                                            <br>
+                                            @error('pic')
+                                            <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Kirim</button>
                         </form>
                     </div>
                 </div>
@@ -211,82 +211,104 @@
                 $('.modal-body').html('');
                 $('.modal-body').append(`
                 <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="pic">Pic</label>
-                            <input type="hidden" name="id" value="`+ data.id +`">
-                            <input type="text" name="pic" id="pic" class="form-control"
-                                aria-describedby="Masukan Data Pic" value="`+ data.pic +`">
-                            <br>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-10">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row text-center">
+                                <div class="col-md-12">
+                                <input name="id" value="`+ data.id +`" type="hidden">
+                                    <img src="{{ asset('storage/image/CA/`+ data.pic +`') }}"
+                                    style="width: 300px;" alt="">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="regis_number">Regist Number</label>
-                            <input type="text" name="regis_number" id="regis_number" class="form-control"
-                                aria-describedby="Masukan Data Regist Number"
-                                value="`+ data.regis_number +`">
-                            <br>
+                    <hr style="margin-top:50px;">
+                    <div class="col-md-12 text-right">
+                        <button type="button" id="btn_enable" class="btn btn-secondary btn-sm">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="regis_number">Nomor Registrasi</label>
+                                <input type="text" id="first_focus" name="regis_number" value="`+ data.regis_number +`" class="form-control edit_input"
+                                    aria-describedby="Masukan Data Regist Number"
+                                    placeholder="Masukan Data Regist Number">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="name">Nama Lengkap</label>
+                                <input type="text" name="name" value="`+ data.name +`" class="form-control edit_input"
+                                    aria-describedby="Masukan Data Name" placeholder="Masukan Data Name">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" name="name" id="name" class="form-control"
-                                aria-describedby="Masukan Data Name" value="`+ data.name +`">
-                            <br>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="born">Tanggal Lahir</label>
+                                <input type="date" name="born" value="`+ data.born +`" class="form-control edit_input"
+                                    aria-describedby="Masukan Data Born" placeholder="Masukan Data Born">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="born">Born</label>
-                            <input type="date" name="born" id="born" class="form-control"
-                                aria-describedby="Masukan Data Born" value="`+ data.born +`">
-                            <br>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <label for="sex">Sex</label>
-                        <select class="form-control" name="sex" id="sex">
-                            <option disabled selected>select Sex</option>
-                            <option value="Laki-Laki">Laki-Laki</option>
-                            <option value="Perempuan">Perempuan</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="departemen_id">Departement</label>
-                            <select class="form-control" name="departemen_id" id="departemen_id">
-                                <option disabled selected>select Departement</option>
-                                @foreach ($data ['dept'] as $d)
-                                <option value="{{$d->id}}">{{$d->name}}</option>
-                                @endforeach
+                        <div class="col-sm-6">
+                            <label for="sex">Sex</label>
+                            <select class="form-control op_select" id="sex_sel" name="sex">
+                                <option disabled selected>Pilih Jenis Kelamin</option>
+                                <option value="Laki-Laki">Laki-Laki</option>
+                                <option value="Perempuan">Perempuan</option>
                             </select>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="semester">Semester</label>
-                            <input type="text" name="semester" id="semester" class="form-control"
-                                aria-describedby="Masukan Data Semester"
-                                value="`+ data.semester +`">
-                            <br>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="departemen_id">Jurusan</label>
+                                <select class="form-control op_select" id="dept_sel" name="departemen_id">
+                                    <option disabled selected>select Departement</option>
+                                    @foreach ($data ['dept'] as $d)
+                                    <option value="{{$d->id}}">{{$d->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="">Pilih Semester</label>
+                                <select name="semester" class="form-control op_select" id="semes_sel">
+                                    <option selected disabled>-- Pilih --</option>
+                                    <option value="1">I Satu</option>
+                                    <option value="3">III Tiga</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="cause">Cause</label>
-                            <input type="text" name="cause" id="cause" class="form-control"
-                                aria-describedby="Masukan Data Cause" value="`+ data.cause +`">
-                            <br>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Alasan Masuk Pena</label>
+                                <textarea name="cause" class="form-control edit_input" id="cause_sel"
+                                    rows="12"></textarea>
+                            </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="custom-file">
+                                    <input type="hidden" name="pic_update" value="`+ data.pic +`">
+                                    <input type="file" class="custom-file-input op_select" name="pic" id="">
+                                    <label class="custom-file-label" for="pic_select">Pilih Gambar</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-sm-1"></div>
                 </div>
                 `);
                 $('.modal-footer').html('');
@@ -295,10 +317,21 @@
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 `);
                 $('#univModal').modal('show');
-                $('#sex').val(data.sex);
-                $('#departemen_id').val(data.departemen_id);
+                $('#sex_sel').val(data.sex);
+                $('#dept_sel').val(data.departemen_id);
+                $('#semes_sel').val(data.semester);
+                $('#cause_sel').val(data.cause);
+                $('.edit_input').prop('readonly',true);
+                $('.op_select').prop('disabled',true);
             })
         });
+
+        $(document).on('click', '#btn_enable', function()
+        {
+            $('.edit_input').prop('readonly',false);
+            $('.op_select').prop('disabled',false);
+            $('#first_focus').focus();
+        })
 
         $(document).on('click','#del-data',function(){
             let dataId = $(this).data('id');
