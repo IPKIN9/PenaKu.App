@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Cms\DeptController;
 use App\Http\Controllers\Cms\GenerationController;
+use App\Http\Controllers\Cms\MemberController;
 use App\Http\Controllers\Cms\NewsController;
 use App\Http\Controllers\Cms\PositionController;
 use App\Http\Controllers\Contoh\ContohController;
@@ -49,4 +50,12 @@ Route::prefix('generation')->group(function () {
     Route::get('getspecdata/{id}', [GenerationController::class, 'edit']);
     Route::post('update', [GenerationController::class, 'update'])->name('generation.update');
     Route::delete('deletespecdata/{id}', [GenerationController::class, 'delete']);
+});
+
+Route::prefix('member')->group(function () {
+    Route::get('index', [MemberController::class, 'index'])->name('member.index');
+    Route::post('create', [MemberController::class, 'create'])->name('member.create');
+    Route::get('getspecdata/{id}', [MemberController::class, 'edit']);
+    Route::post('update', [MemberController::class, 'update'])->name('member.update');
+    Route::delete('deletespecdata/{id}', [MemberController::class, 'delete']);
 });
