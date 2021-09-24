@@ -15,38 +15,66 @@
     <div class="sidebar-heading">
         Kelolah Data
     </div>
-    <li class="nav-item {{ Route::is('contoh.index') ? 'active' : '' }}">
-        <a class="nav-link" href="{{route('contoh.index')}}">
-            <i class="fas fa-paperclip"></i>
-            <span>Contoh</span></a>
-    </li>
     <li class="nav-item {{ Route::is('news.index') ? 'active' : '' }}">
         <a class="nav-link" href="{{route('news.index')}}">
-            <i class="fas fa-paperclip"></i>
-            <span>News</span></a>
+            <i class="far fa-newspaper"></i>
+            <span>Berita</span></a>
     </li>
-    <li class="nav-item {{ Route::is('departement.index') ? 'active' : '' }}">
-        <a class="nav-link" href="{{route('departement.index')}}">
-            <i class="fas fa-paperclip"></i>
-            <span>Departement</span></a>
+    <li class="nav-item 
+    {{ Route::is('question.index') ? 'active' : '' }}
+    {{ Route::is('new_member.index') ? 'active' : '' }}
+    ">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePerekrutan"
+            aria-expanded="true" aria-controls="collapsePerekrutan">
+            <i class="fas fa-user-plus"></i>
+            <span>Perekrutan</span>
+        </a>
+        <div id="collapsePerekrutan" class="collapse 
+        {{ Route::is('question.index') ? 'show' : '' }}
+        {{ Route::is('new_member.index') ? 'show' : '' }}
+        " aria-labelledby="headingForm" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Calon Anggota</h6>
+                <a class="collapse-item {{ Route::is('question.index') ? 'active' : '' }}"
+                    href="{{route('question.index')}}">Wawancara</a>
+                <a class="collapse-item {{ Route::is('new_member.index') ? 'active' : '' }}"
+                    href="{{route('new_member.index')}}">Anggota Baru</a>
+            </div>
+        </div>
     </li>
-    <li class="nav-item {{ Route::is('position.index') ? 'active' : '' }}">
-        <a class="nav-link" href="{{route('position.index')}}">
-            <i class="fas fa-paperclip"></i>
-            <span>Position</span></a>
-    </li>
-    <li class="nav-item {{ Route::is('generation.index') ? 'active' : '' }}">
-        <a class="nav-link" href="{{route('generation.index')}}">
-            <i class="fas fa-paperclip"></i>
-            <span>Generation</span></a>
+    <li class="nav-item
+    {{ Route::is('departement.index') ? 'active' : '' }}
+    {{ Route::is('position.index') ? 'active' : '' }}
+    {{ Route::is('generation.index') ? 'active' : '' }}
+    ">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseKelengkapan"
+            aria-expanded="true" aria-controls="collapseKelengkapan">
+            <i class="fas fa-th-list"></i>
+            <span>Kelengkapan Data</span>
+        </a>
+        <div id="collapseKelengkapan" class="collapse
+        {{ Route::is('departement.index') ? 'show' : '' }}
+        {{ Route::is('position.index') ? 'show' : '' }}
+        {{ Route::is('generation.index') ? 'show' : '' }}
+        " aria-labelledby="headingForm" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Semua Data</h6>
+                <a class="collapse-item {{ Route::is('departement.index') ? 'active' : '' }}"
+                    href="{{route('departement.index')}}">Jurusan</a>
+                <a class="collapse-item {{ Route::is('position.index') ? 'active' : '' }}"
+                    href="{{route('position.index')}}">Jabatan</a>
+                <a class="collapse-item {{ Route::is('generation.index') ? 'active' : '' }}"
+                    href="{{route('generation.index')}}">Generasi</a>
+            </div>
+        </div>
     </li>
     <li class="nav-item {{ Route::is('member.index') ? 'active' : '' }}">
         <a class="nav-link" href="{{route('member.index')}}">
-            <i class="fas fa-paperclip"></i>
-            <span>Member</span></a>
-    <li class="nav-item {{ Route::is('new_member.index') ? 'active' : '' }}">
-        <a class="nav-link" href="{{route('new_member.index')}}">
-            <i class="fas fa-paperclip"></i>
-            <span>New Member</span></a>
+            <i class="far fa-id-card"></i>
+            <span>Anggota</span></a>
+    <li class="nav-item {{ Route::is('event.index') ? 'active' : '' }}">
+        <a class="nav-link" href="{{route('event.index')}}">
+            <i class="fas fa-calendar-day"></i>
+            <span>Event</span></a>
     </li>
 </ul>

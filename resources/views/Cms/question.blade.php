@@ -4,7 +4,7 @@
     <div class="col-lg-12">
         <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h4 class="m-0 font-weight-bold text-primary">Data Berita</h4>
+                <h4 class="m-0 font-weight-bold text-primary">Data Pertanyaan</h4>
                 <br>
                 @if (session('status'))
                 <div class="alert alert-success alert-dismissible" role="alert">
@@ -19,13 +19,13 @@
                 <div id="dataTableHover_wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                         <div class="col-sm-12">
-                            <table class="table align-items-center table-flush table-hover dataTable" id="table_news"
+                            <table class="table align-items-center table-flush table-hover dataTable" id="table_contoh"
                                 role="grid" aria-describedby="dataTableHover_info">
                                 <thead class="thead-light">
                                     <tr role="row">
                                         <th>No</th>
-                                        <th>title</th>
-                                        <th>contents</th>
+                                        <th>Point</th>
+                                        <th>Questions</th>
                                         <th>Created at</th>
                                         <th>Updated at</th>
                                         <th>Action</th>
@@ -35,11 +35,11 @@
                                     @php
                                     $no = 1;
                                     @endphp
-                                    @foreach ($data as $d)
+                                    @foreach ($data['all'] as $d)
                                     <tr role="row" class="odd">
                                         <td class="sorting_1">{{$no++}}</td>
-                                        <td>{{$d->title}}</td>
-                                        <td style="width: 400px;">{{$d->contents}}</td>
+                                        <td>{{$d->point}}</td>
+                                        <td>{{$d->questions}}</td>
                                         <td>{{date('d-M-Y', strtotime($d->created_at))}}</td>
                                         <td>{{date('d-M-Y', strtotime($d->updated_at))}}</td>
                                         <td>
@@ -68,36 +68,33 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
                     <div class="card-body mt-2 mb-5">
-                        <form autocomplete="off" action="{{route('news.create')}}" method="POST">
+                        <form autocomplete="off" action="{{route('question.create')}}" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label for="contoh_input">title</label>
-                                        <input type="text" name="title" class="form-control" id="news_input"
-                                            aria-describedby="Masukan Data news" placeholder="">
-                                        <small id="contoh_news" class="form-text text-muted">Masukan title</small>
+                                        <label for="contoh_input">Poin</label>
+                                        <input type="number" name="point" class="form-control" id="contoh_input">
+                                        <small id="contoh_input" class="form-text text-muted">Berikan nilai untuk
+                                            pertanyaan.</small>
                                         <br>
-                                        @error('title')
+                                        @error('point')
                                         <p class="text-danger">{{ $message }}</p>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label for="news_input">contents</label>
-                                        <textarea class="form-control" name="contents" rows="12"></textarea>
-                                        <small id="news_input" class="form-text text-muted">masukan contents</small>
+                                        <label for="contoh_input">Pertanyaan</label>
+                                        <textarea class="form-control" name="questions" id="" rows="6"></textarea>
                                         <br>
-                                        @error('title')
+                                        @error('questions')
                                         <p class="text-danger">{{ $message }}</p>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
-                            <hr>
-
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary mb-3">Kirim</button>
                         </form>
                     </div>
                 </div>
@@ -105,11 +102,10 @@
             </div>
         </div>
     </div>
-</div>
-@endsection
-@section('js')
-<script>
-    $(document).ready(function()
+    @endsection
+    @section('js')
+    <script>
+        $(document).ready(function()
     {
         $.ajaxSetup({
             headers: {
@@ -117,7 +113,7 @@
             }
         });
 
-        $('#table_news').DataTable();
+        $('#table_contoh').DataTable();
 
         $(document).on('click','#edit-data',function(){
             let dataId = $(this).data('id');
@@ -125,28 +121,28 @@
             
             $.get(url, function(data){
                 $('.modal-title').html('Perubahan Data');
-                $('#edit_form').attr('action', `{{route('news.update')}}`);
+                $('#edit_form').attr('action', `{{route('question.update')}}`);
                 $('.modal-body').html('');
                 $('.modal-body').append(`
-                <div class="row mt-5">
+                <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <div class="form-group">
-                            <label for="news_input">Title</label>
+                            <label for="contoh_input">Point</label>
                             <input type="hidden" name="id" value="`+ data.id +`">
-                            <input type="text" value="`+ data.title +`" name="title" class="form-control" >
-                            <small class="form-text text-muted">masukan title</small>
+                            <input type="text" value="`+ data.point +`" name="point" class="form-control" >
+                            <small class="form-text text-muted">We'll never share your
+                                email with anyone else.</small>
                         </div>
                         <div class="form-group">
-                            <label for="news_input">Contents</label>
-                            <textarea class="form-control" id="contents_id" name="contents" rows="12"></textarea>
-                            <small class="form-text text-muted">masukan contents</small>
+                            <label for="contoh_input">Pertanyaan</label>
+                            <textarea class="form-control" name="questions" id="questions" rows="6"></textarea>
                         </div>
                     </div>
                     <div class="col-md-1"></div>
                 </div>
                 `);
-                $('#contents_id').val(data.contents);
+                $('#questions').val(data.questions);
                 $('.modal-footer').html('');
                 $('.modal-footer').append(`
                 <button type="submit" class="btn btn-primary">Simpan</button>
@@ -195,5 +191,5 @@
             })
         });
     });
-</script>
-@endsection
+    </script>
+    @endsection
