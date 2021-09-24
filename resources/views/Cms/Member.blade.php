@@ -4,7 +4,7 @@
     <div class="col-lg-12">
         <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h4 class="m-0 font-weight-bold text-primary">Data Member</h4>
+                <h4 class="m-0 font-weight-bold text-primary">Data Anggota Aktif</h4>
                 <br>
                 @if (session('status'))
                 <div class="alert alert-success alert-dismissible" role="alert">

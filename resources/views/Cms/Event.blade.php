@@ -82,6 +82,9 @@
                                             dimasukan
                                             landscape.</small>
                                         <br>
+                                        @error('img')
+                                        <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -92,6 +95,9 @@
                                         <small id="" class="form-text text-muted">Masukan data nama
                                             lengkap.</small>
                                         <br>
+                                        @error('name')
+                                        <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -102,6 +108,9 @@
                                         <small id="" class="form-text text-muted">Masukan link yang
                                             berkaitan dengan event.</small>
                                         <br>
+                                        @error('link')
+                                        <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -111,6 +120,9 @@
                                         <small id="" class="form-text text-muted">Pilih tanggal pelaksanaan
                                             kegiatan.</small>
                                         <br>
+                                        @error('execution_date')
+                                        <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
@@ -118,6 +130,10 @@
                                         <label for="">Penjelasan Lengkap</label>
                                         <textarea class="form-control" name="description" id="" rows="5"></textarea>
                                     </div>
+                                    <br>
+                                    @error('description')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary mb-3">Kirim</button>

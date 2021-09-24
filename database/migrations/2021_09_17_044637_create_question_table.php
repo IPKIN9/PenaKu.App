@@ -11,7 +11,7 @@ class CreateQuestionTable extends Migration
         Schema::create('question', function (Blueprint $table) {
             $table->id();
             $table->string('questions');
-            $table->string('point')->nullable()->constrained('users');
+            $table->integer('point')->nullable()->constrained('users');
             $table->timestamps();
         });
     }

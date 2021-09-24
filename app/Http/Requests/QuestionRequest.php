@@ -14,14 +14,15 @@ class QuestionRequest extends FormRequest
     public function rules()
     {
         return [
-            'point' => 'required',
+            'point' => 'required|numeric',
             'questions' => 'required'
         ];
     }
     public function messages()
     {
-        return[
-            'required' => 'Field ini tidak boleh kosong'
+        return [
+            'required' => 'Field ini tidak boleh kosong',
+            'integer' => 'Data harus berbentuk numeric'
         ];
     }
 }

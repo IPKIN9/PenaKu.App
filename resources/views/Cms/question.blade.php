@@ -4,7 +4,7 @@
     <div class="col-lg-12">
         <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h4 class="m-0 font-weight-bold text-primary">Data Question</h4>
+                <h4 class="m-0 font-weight-bold text-primary">Data Pertanyaan</h4>
                 <br>
                 @if (session('status'))
                 <div class="alert alert-success alert-dismissible" role="alert">
@@ -59,7 +59,7 @@
             </div>
         </div>
     </div>
-	<div class="col-lg-12 mt-5">
+    <div class="col-lg-12 mt-5">
         <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h4 class="m-0 font-weight-bold text-primary">Formulir</h4>
@@ -73,22 +73,28 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label for="contoh_input">Point</label>
-                                        <input type="number" name="point" class="form-control" id="contoh_input"
-                                            aria-describedby="Masukan Data Contoh" placeholder="Insert Value Here">
-                                        <small id="contoh_input" class="form-text text-muted">We'll never share your
-                                            email with anyone else.</small>
+                                        <label for="contoh_input">Poin</label>
+                                        <input type="number" name="point" class="form-control" id="contoh_input">
+                                        <small id="contoh_input" class="form-text text-muted">Berikan nilai untuk
+                                            pertanyaan.</small>
                                         <br>
+                                        @error('point')
+                                        <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label for="contoh_input">Questions</label>
-					                      <textarea class="form-control" name="questions" id="exampleFormControlTextarea1" rows="4"></textarea>
-					                </div>
+                                        <label for="contoh_input">Pertanyaan</label>
+                                        <textarea class="form-control" name="questions" id="" rows="6"></textarea>
+                                        <br>
+                                        @error('questions')
+                                        <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary mb-3">Submit</button>
+                            <button type="submit" class="btn btn-primary mb-3">Kirim</button>
                         </form>
                     </div>
                 </div>
@@ -96,10 +102,10 @@
             </div>
         </div>
     </div>
-@endsection
-@section('js')
-<script>
-    $(document).ready(function()
+    @endsection
+    @section('js')
+    <script>
+        $(document).ready(function()
     {
         $.ajaxSetup({
             headers: {
@@ -129,16 +135,14 @@
                                 email with anyone else.</small>
                         </div>
                         <div class="form-group">
-                            <label for="contoh_input">Questions</label>
-                            <input type="hidden" name="id" value="`+ data.id +`">
-                            <input type="text" value="`+ data.questions +`" name="questions" class="form-control" >
-                            <small class="form-text text-muted">We'll never share your
-                                email with anyone else.</small>
+                            <label for="contoh_input">Pertanyaan</label>
+                            <textarea class="form-control" name="questions" id="questions" rows="6"></textarea>
                         </div>
                     </div>
                     <div class="col-md-1"></div>
                 </div>
                 `);
+                $('#questions').val(data.questions);
                 $('.modal-footer').html('');
                 $('.modal-footer').append(`
                 <button type="submit" class="btn btn-primary">Simpan</button>
@@ -187,5 +191,5 @@
             })
         });
     });
-</script>
-@endsection
+    </script>
+    @endsection
