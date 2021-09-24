@@ -45,6 +45,7 @@ class HomeController extends Controller
             'sex' => $request->sex,
             'departemen_id' => $request->departemen_id,
             'semester' => $request->semester,
+            'hp' => $request->hp,
             'cause' => $request->cause,
             'created_at' => $date,
             'updated_at' => $date,

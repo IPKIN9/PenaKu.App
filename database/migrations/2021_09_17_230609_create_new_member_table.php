@@ -22,6 +22,7 @@ class CreateNewMemberTable extends Migration
             $table->string('sex');
             $table->foreignId('departemen_id')->constrained('departement');
             $table->string('semester');
+            $table->string('hp')->nullable();
             $table->string('cause');
             $table->timestamps();
         });

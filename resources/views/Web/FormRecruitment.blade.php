@@ -219,6 +219,17 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Nomor Hp (Whatsapp)</label>
+                                                    <input required name="hp" type="text" class="form-control" id=""
+                                                        placeholder="Masukan nomor hp">
+                                                    <small id="" class="form-text text-muted">Wajib
+                                                        diisi.</small>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="row" style="margin-top: 50px;">
                                             <div class="col-md-12">
                                                 <div class="form-group">
