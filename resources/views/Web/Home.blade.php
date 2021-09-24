@@ -66,7 +66,7 @@
                             <h1>PENA</h1>
                             <p class="sub">Programming Engineering & Networking Adhiguna</p>
                             <p class="sub" style="font-size: 50px;;">Pendaftaran Dibuka Dalam</p>
-                            <a class="btn btn-primary" id="" href="{{route('form.index')}}"></a>
+                            <a class="btn btn-primary" id="" href="{{route('form.index')}}">Daftar Sekarang</a>
                             <img class="img-fluid mx-auto wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s"
                                 src="{{ asset('assets/web/imgs/macbook1.png') }}" alt="macbook">
                         </div>
