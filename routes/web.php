@@ -9,6 +9,7 @@ use App\Http\Controllers\Cms\New_MemberController;
 use App\Http\Controllers\Contoh\ContohController;
 use App\Http\Controllers\Cms\EventController;
 use App\Http\Controllers\Cms\QuestionController;
+use App\Http\Controllers\Cms\DetailRequestController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -82,4 +83,11 @@ Route::prefix('Question')->group(function () {
     Route::get('getspecdata/{id}', [QuestionController::class, 'edit']);
     Route::post('update', [QuestionController::class, 'update'])->name('question.update');
     Route::delete('deletespecdata/{id}', [QuestionController::class, 'delete']);
+});
+Route::prefix('ResultReq')->group(function () {
+    Route::get('index', [DetailRequestController::class, 'index'])->name('resultreq.index');
+    Route::post('create', [DetailRequestController::class, 'create'])->name('resultreq.create');
+    Route::get('getspecdata/{id}', [DetailRequestController::class, 'edit']);
+    Route::post('update', [DetailRequestController::class, 'update'])->name('resultreq.update');
+    Route::delete('deletespecdata/{id}', [DetailRequestController::class, 'delete']);
 });

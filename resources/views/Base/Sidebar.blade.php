@@ -23,6 +23,7 @@
     <li class="nav-item 
     {{ Route::is('question.index') ? 'active' : '' }}
     {{ Route::is('new_member.index') ? 'active' : '' }}
+    {{ Route::is('resultreq.index') ? 'active' : '' }}
     ">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePerekrutan"
             aria-expanded="true" aria-controls="collapsePerekrutan">
@@ -32,6 +33,7 @@
         <div id="collapsePerekrutan" class="collapse 
         {{ Route::is('question.index') ? 'show' : '' }}
         {{ Route::is('new_member.index') ? 'show' : '' }}
+        {{ Route::is('resultreq.index') ? 'show' : '' }}
         " aria-labelledby="headingForm" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Calon Anggota</h6>
@@ -39,6 +41,8 @@
                     href="{{route('question.index')}}">Wawancara</a>
                 <a class="collapse-item {{ Route::is('new_member.index') ? 'active' : '' }}"
                     href="{{route('new_member.index')}}">Anggota Baru</a>
+                <a class="collapse-item {{ Route::is('resultreq.index') ? 'active' : '' }}"
+                    href="{{route('resultreq.index')}}">Hasil Jawaban</a>
             </div>
         </div>
     </li>
