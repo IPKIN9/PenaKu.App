@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class New_MemberModel extends Model
 {
     use HasFactory;
-    protected $table='new_member';
+    protected $table = 'new_member';
     protected $fillable = [
         'id',
         'pic',
@@ -18,6 +18,7 @@ class New_MemberModel extends Model
         'sex',
         'departemen_id',
         'semester',
+        'hp',
         'cause',
         'created_at',
         'updated_at',

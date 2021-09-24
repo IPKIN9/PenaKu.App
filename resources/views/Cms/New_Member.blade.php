@@ -112,8 +112,8 @@
                                     <label for="sex">Jenis Kelamin</label>
                                     <select class="form-control" name="sex">
                                         <option disabled selected>-- Pilih --</option>
-                                        <option value="Laki-Laki">Laki-Laki</option>
-                                        <option value="Perempuan">Perempuan</option>
+                                        <option value="laki-laki">Laki-Laki</option>
+                                        <option value="perempuan">Perempuan</option>
                                     </select>
                                     <br>
                                     @error('sex')
@@ -259,8 +259,8 @@
                             <label for="sex">Sex</label>
                             <select class="form-control op_select" id="sex_sel" name="sex">
                                 <option disabled selected>Pilih Jenis Kelamin</option>
-                                <option value="Laki-Laki">Laki-Laki</option>
-                                <option value="Perempuan">Perempuan</option>
+                                <option value="laki-laki">Laki-Laki</option>
+                                <option value="perempuan">Perempuan</option>
                             </select>
                         </div>
                     </div>

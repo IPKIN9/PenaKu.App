@@ -10,7 +10,7 @@ class DetailQuestionModel extends Model
     use HasFactory;
     protected $table = 'detail_question';
     protected $fillable = [
-        'id', 'new_memeber_id', 'question_id', 'answer', 'created_at', 'updated_at'
+        'id', 'new_member_id', 'question_id', 'answer', 'created_at', 'updated_at'
     ];
 
     public function new_member_rerol()
