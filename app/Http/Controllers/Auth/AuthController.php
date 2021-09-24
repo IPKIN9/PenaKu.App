@@ -5,12 +5,18 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\RateLimiter;
 
 class AuthController extends Controller
 {
-    public function login()
+    public function login(Request $request)
     {
-        return view('Auth.Login');
+        $key = 'login.' . $request->ip();
+        return view('Auth.Login', [
+            'key' => $key,
+            'retries' => RateLimiter::retriesLeft($key, 5),
+            'seconds' => RateLimiter::availableIn($key)
+        ]);
     }
 
     public function check(Request $request)

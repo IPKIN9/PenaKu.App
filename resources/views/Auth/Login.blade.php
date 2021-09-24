@@ -33,34 +33,43 @@
                                         <h1 class="h4 text-gray-900 mb-4">Login</h1>
                                     </div>
                                     <div class="row">
+                                        @if (session('status'))
                                         <div class="col-md-12 text-center">
-                                            @if (session('status'))
                                             <p class="text-danger">
                                                 {{ session('status') }}
                                             </p>
-                                            @endif
                                         </div>
+                                        @endif
+                                        @if ($errors->any() && $retries > 0)
+                                        <div class="col-md-12 text-center">
+                                            <p class="text-danger">Tersisa {{$retries}} Percobaan</p>
+                                        </div>
+
+                                        @endif
+                                        @if ($retries <= 0) <div class="col-md-12 text-center">
+                                            <p class="text-danger">Coba lagi dalam {{$seconds}} detik</p>
                                     </div>
-                                    <form class="user" method="POST" action="{{route('auth.check')}}">
-                                        @csrf
-                                        <div class="form-group">
-                                            <input required type="text" name="username" class="form-control" id=""
-                                                aria-describedby="emailHelp" placeholder="Username">
-                                        </div>
-                                        <div class="form-group">
-                                            <input required type="password" name="password" class="form-control" id=""
-                                                placeholder="Password">
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-primary btn-block">Login</button>
-                                        </div>
-                                    </form>
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="font-weight-bold small" href="register.html">Create an Account!</a>
+                                    @endif
+                                </div>
+                                <form class="user" method="POST" action="{{route('auth.check')}}">
+                                    @csrf
+                                    <div class="form-group">
+                                        <input type="text" name="username" class="form-control" id=""
+                                            aria-describedby="emailHelp" placeholder="Username">
                                     </div>
-                                    <div class="text-center">
+                                    <div class="form-group">
+                                        <input type="password" name="password" class="form-control" id=""
+                                            placeholder="Password">
                                     </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                    </div>
+                                </form>
+                                <hr>
+                                <div class="text-center">
+                                    <a class="font-weight-bold small" href="register.html">Create an Account!</a>
+                                </div>
+                                <div class="text-center">
                                 </div>
                             </div>
                         </div>
@@ -68,6 +77,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

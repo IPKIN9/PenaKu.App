@@ -21,7 +21,7 @@ Route::post('regist_data', [HomeController::class, 'insert'])->name('form.insert
 
 Route::prefix('auth')->group(function () {
     Route::get('index', [AuthController::class, 'login'])->name('login');
-    Route::post('check', [AuthController::class, 'check'])->name('auth.check');
+    Route::post('login', [AuthController::class, 'check'])->middleware('throttle:login')->name('auth.check');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
